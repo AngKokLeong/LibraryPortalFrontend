@@ -48,7 +48,7 @@ export const Carousel = () => {
             <div className='d-lg-none mt-3'>
                 <div className='row d-flex justify-content-center align-items-center'>
                     <div className='text-center'>
-                        <img src={require('./../../Images/BooksImages/book-luv2code-1000.png')}
+                        <img src={require('./../../../Images/BooksImages/book-luv2code-1000.png')}
                             width='151'
                             height='233'
                             alt="book"
