@@ -12,7 +12,7 @@ export const SearchBook: React.FC<{ book: BookModel }> = (props) => {
                     <div className='d-none d-lg-block'>
                         {props.book.img ?
                             <img
-                                src={props.book.img}
+                                src={"data:image/png;base64," + props.book.img}
                                 width='123'
                                 height='196'
                                 alt='Book'
@@ -26,6 +26,24 @@ export const SearchBook: React.FC<{ book: BookModel }> = (props) => {
                             />
                         }
                     </div>
+                    <div className="d-lg-none d-flex justify-content-center align-items-center">
+                        {props.book.img ?
+                            <img
+                                src={"data:image/png;base64," + props.book.img}
+                                width='123'
+                                height='196'
+                                alt='Book'
+                            />
+                            :
+                            <img
+                                src={require('../../../Images/BooksImages/book-luv2code-1000.png')}
+                                width='123'
+                                height='196'
+                                alt='Book'
+                            />
+                        }
+                    </div>
+
                 </div>
                 <div className='col-md-6'>
                     <div className='card-body'>
@@ -41,7 +59,7 @@ export const SearchBook: React.FC<{ book: BookModel }> = (props) => {
                     </div>
                 </div>
                 <div className='col-md-4 d-flex justify-content-center align-items-center'>
-                    <a className='btn btn-md main-color text-white' href='#'>
+                    <a className='btn btn-md main-color text-white' href='#top'>
                         View Details
                     </a>
                 </div>

@@ -84,19 +84,19 @@ export const SearchBooksPage = () => {
                                 </button>
                                 <ul className='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
                                     <li>
-                                        <a className='dropdown-item' href='#'>All</a>
+                                        <a className='dropdown-item' href='#top'>All</a>
                                     </li>
                                     <li>
-                                        <a className='dropdown-item' href='#'>Front End</a>
+                                        <a className='dropdown-item' href='#top'>Front End</a>
                                     </li>
                                     <li>
-                                        <a className='dropdown-item' href='#'>Back End</a>
+                                        <a className='dropdown-item' href='#top'>Back End</a>
                                     </li>
                                     <li>
-                                        <a className='dropdown-item' href='#'>Data</a>
+                                        <a className='dropdown-item' href='#top'>Data</a>
                                     </li>
                                     <li>
-                                        <a className='dropdown-item' href='#'>DevOps</a>
+                                        <a className='dropdown-item' href='#top'>DevOps</a>
                                     </li>
                                 </ul>
                             </div>
@@ -108,11 +108,9 @@ export const SearchBooksPage = () => {
                     <p>
                         1 to 5 of 22 items:
                     </p>
-                    {
-                        books.map(book => (
+                    {books.map(book => (
                             <SearchBook book={book} key={book.id} />
-                        )
-                    }
+                        ))}
                 </div>
             </div>
         </div>
