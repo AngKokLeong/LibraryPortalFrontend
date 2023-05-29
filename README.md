@@ -107,7 +107,9 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 * [![React][React.js]][React-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-
+* [![DevContainers][Bootstrap.com]][Bootstrap-url]
+* [![Rancher Desktop][Rancher-Desktop]][Rancher-Desktop-url]
+* 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -208,7 +210,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/AngKokLeong/LibraryPortalFrontend](https://github.com/AngKokLeong/LibraryPortalFrontend)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -264,3 +266,5 @@ Use this space to list resources you find helpful and would like to give credit 
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+[Rancher-Desktop]: https://img.shields.io/badge/-Rancher-black?logo=rancher
+[Rancher-Desktop-url]: https://rancherdesktop.io/
