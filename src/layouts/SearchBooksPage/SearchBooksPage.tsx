@@ -18,6 +18,12 @@ export const SearchBooksPage = () => {
 
     const [categorySelection, setCategorySelection] = useState('Book category');
 
+    const FRONT_END = 'Front End';
+    const BACK_END = 'Back End';
+    const DEVOPS = 'DevOps';
+    const DATA = 'Data';
+
+
     useEffect(() => {
         const fetchBooks = async () => {
             const baseUrl: string = "http://localhost:8080/api/books";
@@ -98,12 +104,29 @@ export const SearchBooksPage = () => {
 
     const categoryField  = (value: string) => {
         setCurrentPage(1);
+
+        switch(value){
+            case 'FE':
+                setCategorySelection(FRONT_END);
+                break;
+            case 'BE':
+                setCategorySelection(BACK_END);
+                break;
+            case 'Data':
+                setCategorySelection(DATA);
+                break;
+            case 'DevOps':
+                setCategorySelection(DEVOPS);
+                break;
+            default:
+                setCategorySelection('All');
+                break;
+        }
+
         if (value === 'FE' || value === 'BE' || value === 'Data' 
         || value === 'DevOps'){
-            setCategorySelection(value);
             setSearchUrl(`/search/findBookByCategory?category=${value}&page=<pageNumber>&size=${booksPerPage}`);
         }else{
-            setCategorySelection('All');
             setSearchUrl(`?page=<pageNumber>&size=${booksPerPage}`);
         }
     }
