@@ -1,3 +1,6 @@
+import { NavLink } from 'react-router-dom';
+import { HOME_ROUTE, SEARCH_ROUTE } from './../../config/route-config';
+
 export const Navbar = () => {
     return (
         <nav className='navbar navbar-expand-lg navbar-dark main-color py-3'>
@@ -12,10 +15,10 @@ export const Navbar = () => {
                 <div className='collapse navbar-collapse' id='navbarNavDropdown'>
                     <ul className='navbar-nav'>
                         <li className='nav-item'>
-                            <a className='nav-link' href='#top'>Home</a>
+                            <NavLink className='nav-link' to={HOME_ROUTE}>Home</NavLink>
                         </li>
                         <li className='nav-item'>
-                            <a className='nav-link' href='#top'>Search Books</a>
+                            <NavLink className='nav-link' to={SEARCH_ROUTE}>Search Books</NavLink>
                         </li>
 
                     </ul>

@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import { HOME_ROUTE, SEARCH_ROUTE } from '../../config/route-config';
+
 export const Footer = () => {
 
     return (
@@ -6,15 +9,15 @@ export const Footer = () => {
                 <p className='col-md-4 mb-0 text-white'>Example Library App, Inc</p>
                 <ul className='nav navbar-dark col-md-4 justify-content-end'>
                     <li className='nav-item'>
-                        <a href='#top' className='nav-link px-2 text-white'>
+                        <Link to={HOME_ROUTE} className='nav-link px-2 text-white'>
                             Home
-                        </a>
+                        </Link>
                         
                     </li>
                     <li className='nav-item'>
-                        <a href='#top' className='nav-link px-2 text-white'>
+                        <Link to={SEARCH_ROUTE} className='nav-link px-2 text-white'>
                             Search Books
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </footer>
