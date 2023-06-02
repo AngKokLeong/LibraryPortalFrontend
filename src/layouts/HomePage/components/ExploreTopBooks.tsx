@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import { SEARCH_ROUTE } from '../../../config/route-config';
+
 export const ExploreTopBooks = () => {
     return (
         <div className='p-4 mb-4 bg-dark header'>
@@ -6,9 +9,9 @@ export const ExploreTopBooks = () => {
                     Find your next adventure
                 </div>
                 <p className='fs-4'>Where would you like to go next?</p>
-                <a type='button' className='btn main-color btn-lg text-white' href='#top'>
+                <Link type='button' className='btn main-color btn-lg text-white' to={SEARCH_ROUTE}>
                     Explore Top Books
-                </a>
+                </Link>
             </div>
         </div>
     )
