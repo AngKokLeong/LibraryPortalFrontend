@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import BookModel from "../../models/BookModel";
 import { SpinnerLoading } from '../Utils/SpinnerLoading';
 import { StarsReview } from '../Utils/StarsReview';
+import { CheckoutAndReviewBox } from './CheckoutAndReviewBox';
 
 export const BookCheckoutPage = () => {
 
@@ -79,7 +80,10 @@ export const BookCheckoutPage = () => {
                             <StarsReview rating={4} size={32} />
                         </div>
                     </div>
+
+                    <CheckoutAndReviewBox book={book} mobile={false} />
                 </div>
+
             </div>
             <div className='container d-lg-none mt-5'>
                 <div className='d-flex justify-content-center align-items-center'>
@@ -98,6 +102,7 @@ export const BookCheckoutPage = () => {
                         <p className='lead'>{book?.description}</p>
                     </div>
                 </div>
+                <CheckoutAndReviewBox book={book} mobile={true} />
                 <hr />
             </div>
                 
