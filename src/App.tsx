@@ -9,6 +9,8 @@ import { HOME_ROUTE, SLASH, SEARCH_ROUTE, BOOK_CHECKOUT_ROUTE, BOOK_CHECKOUT_BOO
 import { BookCheckoutPage } from './layouts/BookCheckoutPage/BookCheckoutPage';
 import { oktaConfig } from './lib/oktaConfig';
 import { OktaAuth, toRelativeUrl } from '@okta/okta-auth-js';
+import { LoginCallback, Security } from '@okta/okta-react';
+import LoginWidget from './Auth/LoginWidget';
 
 const oktaAuth = new OktaAuth(oktaConfig);
 
@@ -26,29 +28,38 @@ export const App = () => {
 
   return (
     <div className='d-flex flex-column min-vh-100'>
-      <Navbar />
+      <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri} onAuthRequired={customAuthHandler}>
+        <Navbar />
 
-      <div className='flex-grow-1'>
-        <Switch>
-          <Route path={SLASH} exact>
-            <Redirect to={HOME_ROUTE} />
-          </Route>
+        <div className='flex-grow-1'>
+          <Switch>
+            <Route path={SLASH} exact>
+              <Redirect to={HOME_ROUTE} />
+            </Route>
 
-          <Route path={HOME_ROUTE}>
-            <HomePage />
-          </Route>
+            <Route path={HOME_ROUTE}>
+              <HomePage />
+            </Route>
 
-          <Route path={SEARCH_ROUTE}>
-            <SearchBooksPage />
-          </Route>
+            <Route path={SEARCH_ROUTE}>
+              <SearchBooksPage />
+            </Route>
 
-          <Route path={BOOK_CHECKOUT_ROUTE + BOOK_CHECKOUT_BOOKID_PARAMETER}>
-            <BookCheckoutPage />
-          </Route>
+            <Route path={BOOK_CHECKOUT_ROUTE + BOOK_CHECKOUT_BOOKID_PARAMETER}>
+              <BookCheckoutPage />
+            </Route>
 
-        </Switch>
-      </div>
-      <Footer />
+            <Route path='/login' render={
+                () => <LoginWidget config={oktaConfig} />
+              } 
+            />
+
+            <Route path='/login/callback' component={LoginCallback} />
+
+          </Switch>
+        </div>
+        <Footer />
+      </Security>
     </div>
   );
 }
