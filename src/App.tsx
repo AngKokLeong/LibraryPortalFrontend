@@ -4,11 +4,26 @@ import { Navbar } from './layouts/NavbarAndFooter/Navbar';
 import { Footer } from './layouts/NavbarAndFooter/Footer';
 import { HomePage } from './layouts/HomePage/HomePage';
 import { SearchBooksPage } from './layouts/SearchBooksPage/SearchBooksPage';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import { HOME_ROUTE, SLASH, SEARCH_ROUTE, BOOK_CHECKOUT_ROUTE, BOOK_CHECKOUT_BOOKID_PARAMETER } from './config/route-config';
 import { BookCheckoutPage } from './layouts/BookCheckoutPage/BookCheckoutPage';
+import { oktaConfig } from './lib/oktaConfig';
+import { OktaAuth, toRelativeUrl } from '@okta/okta-auth-js';
+
+const oktaAuth = new OktaAuth(oktaConfig);
 
 export const App = () => {
+
+  const customAuthHandler = () => {
+    history.push('/login');
+  }
+
+  const history = useHistory();
+
+  const restoreOriginalUri = async (_oktaAuth: any, originalUrl: any) => {
+    history.replace(toRelativeUrl(originalUrl || '/', window.location.origin));
+  };
+
   return (
     <div className='d-flex flex-column min-vh-100'>
       <Navbar />
