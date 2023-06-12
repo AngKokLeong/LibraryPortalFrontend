@@ -63,7 +63,7 @@ export const BookCheckoutPage = () => {
             setIsLoading(false);
             setHttpError(error.message);
         })
-    }, []);
+    }, [bookId]);
 
     useEffect(() => {
         const fetchBookReviews = async () => {
@@ -109,7 +109,7 @@ export const BookCheckoutPage = () => {
                 setHttpError(error.message);
             }  
         )
-    }, []);
+    }, [bookId]);
 
     useEffect(() => {
         const fetchUserCurrentLoansCount = async () => {
@@ -118,7 +118,7 @@ export const BookCheckoutPage = () => {
                 const requestOptions = {
                     method: 'GET',
                     headers: {
-                        Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+                        'Authorization': `Bearer ${authState.accessToken?.accessToken}`,
                         'Content-Type': 'application/json'
                     }
                 };
@@ -139,15 +139,15 @@ export const BookCheckoutPage = () => {
             setHttpError(error.message);
         })
     }, [authState]);
-
+    
     useEffect(() => {
         const fetchUserCheckoutBook = async () => {
             if (authState && authState.isAuthenticated){
-                const url = `http://localhost:8080/api/books/secure/ischeckout/byuser/?bookId=${bookId}`;
+                const url = `http://localhost:8080/api/books/secure/ischeckout/byuser?bookId=${bookId}`;
                 const requestOptions = {
                     method: 'GET',
-                    header: {
-                        Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+                    headers: {
+                        'Authorization': `Bearer ${authState.accessToken?.accessToken}`,
                         'Content-Type': 'application/json'
                     }
                 };
@@ -167,7 +167,7 @@ export const BookCheckoutPage = () => {
             setIsLoadingBookCheckedOut(false);
             setHttpError(error.message);
         })
-    }, [authState]);
+    }, [authState, bookId]);
 
 
 
@@ -194,7 +194,7 @@ export const BookCheckoutPage = () => {
                             book?.img ?
                                 <img src={"data:image/png;base64," + book?.img} width='226' height='349' alt='Book' />
                                 :
-                                <img src={require('./../../Images/BooksImages/book-luv2code-1000.png')} width='226' height='349' />
+                                <img src={require('./../../Images/BooksImages/book-luv2code-1000.png')} width='226' height='349' alt="" />
                         }
                     </div>
                     <div className='col-4 col-md-4 container'>
@@ -206,7 +206,7 @@ export const BookCheckoutPage = () => {
                         </div>
                     </div>
 
-                    <CheckoutAndReviewBox book={book} mobile={false} currentLoansCount={currentLoansCount} />
+                    <CheckoutAndReviewBox book={book} mobile={false} currentLoansCount={currentLoansCount} isAuthenticated={authState?.isAuthenticated} isCheckedOut={isCheckOut} />
                 </div>
                 <hr />
                 <LatestReviews reviews={reviews} bookId={book?.id} mobile={false} />
@@ -218,7 +218,7 @@ export const BookCheckoutPage = () => {
                             book?.img ?
                                 <img src={"data:image/png;base64," + book?.img} width='226' height='349' alt='Book' />
                                 :
-                                <img src={require('./../../Images/BooksImages/book-luv2code-1000.png')} width='226' height='349' />
+                                <img src={require('./../../Images/BooksImages/book-luv2code-1000.png')} width='226' height='349' alt="" />
                         }
                 </div>
 
@@ -229,14 +229,13 @@ export const BookCheckoutPage = () => {
                         <p className='lead'>{book?.description}</p>
                     </div>
                 </div>
-                <CheckoutAndReviewBox book={book} mobile={true} currentLoansCount={currentLoansCount} />
+                <CheckoutAndReviewBox book={book} mobile={true} currentLoansCount={currentLoansCount} isAuthenticated={authState?.isAuthenticated} isCheckedOut={isCheckOut} />
                 <hr />
                 <LatestReviews reviews={reviews} bookId={book?.id} mobile={true} />
             </div>
                 
         </div>
     );
-
 
 
 }
