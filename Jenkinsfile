@@ -5,6 +5,7 @@ pipeline{
                 steps {
                     checkout scm
                 }
+
             }
 
             stage ('Quality Test'){
