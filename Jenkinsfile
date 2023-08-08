@@ -1,5 +1,18 @@
+<<<<<<< HEAD
 node('workers'){
     try{
+=======
+pipeline {
+    agent {
+        label 'workers'
+        //docker {
+        //    image 'node:lts-hydrogen'
+        //    args '-p 3000:3000'
+        //}
+    }
+
+    stages {
+>>>>>>> e637364 (added Jenkinsfile with simple structure)
         stage ('Checkout') {
             steps {
                 checkout scm
@@ -42,6 +55,7 @@ node('workers'){
             }
         }*/
 
+<<<<<<< HEAD
     
     }
     catch(err){
@@ -49,6 +63,8 @@ node('workers'){
     }finally {
         echo "Cleaning up"
 
+=======
+>>>>>>> e637364 (added Jenkinsfile with simple structure)
     }
 
 }
