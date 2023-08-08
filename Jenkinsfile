@@ -1,13 +1,5 @@
-pipeline {
-    agent {
-        label 'workers'
-        //docker {
-        //    image 'node:lts-hydrogen'
-        //    args '-p 3000:3000'
-        //}
-    }
-
-    stages {
+node('workers'){
+    try{
         stage ('Checkout') {
             steps {
                 checkout scm
@@ -50,6 +42,12 @@ pipeline {
             }
         }*/
 
+    
+    }
+    catch(err){
+        echo "Handling errors."
+    }finally {
+        echo "Cleaning up"
     }
 
 }
