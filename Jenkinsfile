@@ -1,54 +1,49 @@
-node('workers'){
-    try{
-        stage ('Checkout') {
-            steps {
-                checkout scm
+pipeline{
+        agent any
+        stages{
+            stage ('Checkout') {
+                steps {
+                    checkout scm
+                }
+
+            }
+
+            stage ('Quality Test'){
+                steps {
+                    //execute the 
+                }
+            }
+
+            stage ('Build') {
+                steps {g
+                    sh 'npm install'
+                }
+            }
+
+            stage ('Unit Tests') {
+                steps {
+                    echo "Current "
+                }
+            }
+
+            stage ('Security Tests'){
+                steps {
+
+                }
+            }
+
+            stage ('Build') {
+                steps {
+
+                }
+            }
+
+            stage ('Push'){
+                steps {
+
+                }
             }
         }
-
-        /*stage ('Quality Test'){
-            steps {
-
-            }
-        }
-
-        stage ('Build') {
-            steps {
-                sh 'npm install'
-            }
-        }
-
-        stage ('Unit Tests') {
-            steps {
-                echo "Current "
-            }
-        }
-
-        stage ('Security Tests'){
-            steps {
-
-            }
-        }
-
-        stage ('Build') {
-            steps {
-
-            }
-        }
-
-        stage ('Push'){
-            steps {
-
-            }
-        }*/
-
-    
-    }
-    catch(err){
-        echo "Handling errors."
-    }finally {
-        echo "Cleaning up"
-
-    }
-
 }
+
+
