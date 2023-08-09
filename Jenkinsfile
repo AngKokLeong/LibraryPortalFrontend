@@ -1,5 +1,14 @@
-pipeline{
+//objective: to find a way to allow different branches to have different stage
+// possible moves: use when and allOf by checking branches and 
+
+pipeline {
         agent any
+        environment {
+            PRODUCTION = 'master'
+            PREPROD = 'preprod'
+            DEVELOP = 'develop'
+
+        }
         stages{
             stage ('Checkout') {
                 steps {
@@ -8,42 +17,6 @@ pipeline{
 
             }
 
-            stage ('Quality Test'){
-                steps {
-                    //execute the 
-                }
-            }
-
-            stage ('Build') {
-                steps {g
-                    sh 'npm install'
-                }
-            }
-
-            stage ('Unit Tests') {
-                steps {
-                    echo "Current "
-                }
-            }
-
-            stage ('Security Tests'){
-                steps {
-
-                }
-            }
-
-            stage ('Build') {
-                steps {
-
-                }
-            }
-
-            stage ('Push'){
-                steps {
-
-                }
-            }
+           
         }
 }
-
-
