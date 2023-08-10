@@ -24,7 +24,7 @@ pipeline {
                     stage ('Quality Test'){
                         agent {
                             dockerfile {
-                                filename '${IMAGE_NAME}-test'
+                                filename '${IMAGE_NAME}.test'
                                 dir 'workspace'
                                 label '${IMAGE_NAME}-test-image'
                                 args '-f Dockerfile.test .'
@@ -41,7 +41,7 @@ pipeline {
 
                         agent {
                             dockerfile {
-                                filename '${IMAGE_NAME}-test'
+                                filename '${IMAGE_NAME}.test'
                                 dir 'workspace'
                                 label '${IMAGE_NAME}-test-image'
                                 args '-f Dockerfile.test .'
@@ -56,7 +56,7 @@ pipeline {
                     stage ('Security Test'){
                         agent {
                             dockerfile {
-                                filename '${IMAGE_NAME}-test'
+                                filename '${IMAGE_NAME}.test'
                                 dir 'workspace'
                                 label '${IMAGE_NAME}-test-image'
                                 args '-f Dockerfile.test .'
