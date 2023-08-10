@@ -7,7 +7,7 @@ pipeline {
             DEVELOP = 'develop'
             IMAGE_NAME = 'LIBRARY-PORTAL-FRONTEND'
         }
-        stages{
+        stages {
             stage ('Checkout') {
                 agent any
 
@@ -53,6 +53,26 @@ pipeline {
                     }
                 }
                 
+            }
+
+            stage ('SonarQube Analysis') {
+                failFast true
+                parallel {
+                    stage ('Static Code Analysis'){
+                        agent any
+                        steps {
+                            withSonarQubeEnv('sonarqube') {
+                                sh 'sonar-scanner'
+                            }
+                        }
+                    }
+                    stage ('Quality Gate'){
+                        steps {
+                            timeout(time: 5, unit: 'MINUTES') {
+                                waitForQualityGate abortPipeline: true
+                            }
+                        }
+                    }
             }
 
             stage ('Build') {
@@ -107,5 +127,5 @@ pipeline {
                 }
             }
 
-        }
+        
 }
