@@ -1,5 +1,5 @@
 pipeline {
-        agent none
+        agent any
 
         environment {
             PRODUCTION = 'master'
@@ -106,7 +106,6 @@ pipeline {
                     echo "On Deploy Production"
                 }
             }
-
 
         }
 }
