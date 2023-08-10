@@ -5,8 +5,9 @@ pipeline {
             PRODUCTION = 'master'
             PREPROD = 'preprod'
             DEVELOP = 'develop'
-            IMAGE_NAME = 'LIBRARY-PORTAL-FRONTEND'
+            DOCKERFILE_NAME = 'Dockerfile.test'
         }
+        
         stages {
             stage ('Checkout') {
                 agent any
@@ -24,10 +25,7 @@ pipeline {
                     stage ('Quality Test'){
                         agent {
                             dockerfile {
-                                filename '${IMAGE_NAME}.test'
-                                dir 'workspace'
-                                label '${IMAGE_NAME}-test-image'
-                                args '-f Dockerfile.test .'
+                                filename '${DOCKERFILE_NAME}'
                             }
                         }
                       
@@ -38,30 +36,13 @@ pipeline {
                         }
                     }
                     stage ('Unit Test'){
-
-                        agent {
-                            dockerfile {
-                                filename '${IMAGE_NAME}.test'
-                                dir 'workspace'
-                                label '${IMAGE_NAME}-test-image'
-                                args '-f Dockerfile.test .'
-                            }
-                        }
-
+                        
                         steps {
                             echo 'On Unit Test'
                             //run the unit test
                         }
                     }
                     stage ('Security Test'){
-                        agent {
-                            dockerfile {
-                                filename '${IMAGE_NAME}.test'
-                                dir 'workspace'
-                                label '${IMAGE_NAME}-test-image'
-                                args '-f Dockerfile.test .'
-                            }
-                        }
 
                         steps {
                             echo 'On Security Test'
