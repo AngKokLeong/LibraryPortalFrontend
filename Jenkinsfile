@@ -31,7 +31,7 @@ pipeline {
                                 def imageTest= docker.build('${IMAGE_NAME}-test -f Dockerfile.test .')
 
                                 imageTest.inside{
-                                    sh 'npm lint'
+                                    sh 'npx eslint ./src'
                                 }
                             }
                             echo 'On Quality Test'
