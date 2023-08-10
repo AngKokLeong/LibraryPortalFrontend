@@ -7,7 +7,7 @@ pipeline {
             DEVELOP = 'develop'
             IMAGE_NAME = 'LIBRARY-PORTAL-FRONTEND'
         }
-        stages{
+        stages {
             stage ('Checkout') {
                 agent any
 
@@ -54,7 +54,7 @@ pipeline {
                 }
                 
             }
-            
+
             stage ('SonarQube Analysis') {
                 failFast true
                 parallel {
@@ -127,5 +127,5 @@ pipeline {
                 }
             }
 
-        }
+        
 }
