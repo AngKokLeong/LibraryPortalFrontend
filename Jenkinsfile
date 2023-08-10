@@ -5,8 +5,10 @@ pipeline {
             PRODUCTION = 'master'
             PREPROD = 'preprod'
             DEVELOP = 'develop'
-            IMAGE_NAME = 'LIBRARY-PORTAL-FRONTEND'
+            DOCKERFILE_NAME = 'Dockerfile.test'
+            IMAGE_NAME = 'library-portal-frontend'
         }
+
         stages {
             stage ('Checkout') {
                 agent any
@@ -17,26 +19,24 @@ pipeline {
             }
 
             stage ('Pre-Integration Test'){
-                agent {
-                    dockerfile {
-                        filename '${IMAGE_NAME}-test'
-                        dir 'workspace'
-                        label '${IMAGE_NAME}-test-image'
-                        args '-f Dockerfile.test .'
-                    }
-                }
 
                 failFast true
                 parallel {
+
                     stage ('Quality Test'){
                         steps {
                             echo 'On Quality Test'
-                            // npm lint
-                            sh 'node --version'
+                            script {
+                                def imageTest= docker.build('${IMAGE_NAME}-test -f Dockerfile.test .')
+
+                                imageTest.inside{
+                                    sh 'npx eslint ./src'
+                                }
+                            }
                         }
                     }
                     stage ('Unit Test'){
-
+                        
                         steps {
                             echo 'On Unit Test'
                             //run the unit test
