@@ -1,5 +1,7 @@
 pipeline {
-        agent none
+        agent {
+            dockerfile true
+        }
 
         environment {
             PRODUCTION = 'master'
@@ -7,7 +9,7 @@ pipeline {
             DEVELOP = 'develop'
             DOCKERFILE_NAME = 'Dockerfile.test'
         }
-        
+
         stages {
             stage ('Checkout') {
                 agent any
