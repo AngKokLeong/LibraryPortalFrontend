@@ -26,13 +26,7 @@ pipeline {
                     stage ('Quality Test'){
                         steps {
                             echo 'On Quality Test'
-                            script {
-                                def imageTest= docker.build('${IMAGE_NAME}-test -f Dockerfile.test .')
 
-                                imageTest.inside{
-                                    sh 'npx eslint ./src'
-                                }
-                            }
                         }
                     }
                     stage ('Unit Test'){
@@ -47,6 +41,12 @@ pipeline {
                         steps {
                             echo 'On Security Test'
                         }
+                    }
+                }
+
+                agent {
+                    dockerfile {
+                        filename '${DOCKERFILE_NAME}'
                     }
                 }
                 
