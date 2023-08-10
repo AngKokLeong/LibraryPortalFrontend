@@ -3,7 +3,7 @@
 
 pipeline {
         agent none
-        
+
         environment {
             PRODUCTION = 'master'
             PREPROD = 'preprod'
@@ -48,11 +48,42 @@ pipeline {
                 
             }
             stage ('Build') {
+                agent any
+
                 steps {
                     echo "On Build"
                 }
             }
+            stage ('Push') {
+                agent any
 
-           
+                when {
+                    anyOf {
+                        branch '${PRODUCTION}'
+                        branch '${PREPROD}'
+                        branch '${DEVELOP}'
+                    }
+                }
+
+                steps {
+                    echo "On Push"
+                }
+            }
+            stage ('Deploy') {
+                agent any
+
+                when {
+                    anyOf {
+                        branch '${PRODUCTION}'
+                        branch '${PREPROD}'
+                    }
+                }
+
+                steps {
+                    echo "On Deploy"
+                }
+            }
+
+
         }
 }
