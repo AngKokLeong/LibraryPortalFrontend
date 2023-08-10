@@ -32,7 +32,7 @@ pipeline {
                         }
                         steps {
                             echo 'On Quality Test'
-
+                            sh 'npx eslint ./src'
                         }
                     }
                     stage ('Unit Test'){
