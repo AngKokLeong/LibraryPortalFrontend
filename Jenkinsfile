@@ -2,10 +2,8 @@
 // possible moves: use when and allOf by checking branches and 
 
 pipeline {
-        agent any
-        options {
-            parallelsAlwaysFailFast()
-        }
+        agent none
+        
         environment {
             PRODUCTION = 'master'
             PREPROD = 'preprod'
@@ -13,6 +11,8 @@ pipeline {
         }
         stages{
             stage ('Checkout') {
+                agent any
+
                 steps {
                     checkout scm
                 }
@@ -24,25 +24,22 @@ pipeline {
                 failFast true
                 parallel {
                     stage ('Quality Test'){
-                        agent {
-                            label "Quality Test Agent"
-                        }
+                        agent any
+
                         steps {
                             echo "On Quality Test"
                         }
                     }
                     stage ('Unit Test'){
-                        agent {
-                            label "Unit Test Agent"
-                        }
+                        agent any
+
                         steps {
                             echo "On Unit Test"
                         }
                     }
                     stage ('Security Test'){
-                        agent {
-                            label "Security Test Agent"
-                        }
+                        agent any
+
                         steps {
                             echo "On Security Test"
                         }
