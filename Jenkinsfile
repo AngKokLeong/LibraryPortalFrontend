@@ -27,7 +27,7 @@ pipeline {
                     stage ('Quality Test'){
                         agent {
                             dockerfile {
-                                filename ('$DOCKERFILE_NAME')
+                                filename sh('echo ${DOCKERFILE_NAME}}')
                             }
                         }
                         steps {
