@@ -1,5 +1,5 @@
 pipeline {
-        agent any
+        agent none
 
         environment {
             PRODUCTION = 'master'
@@ -17,20 +17,18 @@ pipeline {
             }
 
             stage ('Pre-Integration Test'){
+                agent {
+                    dockerfile {
+                        filename '${IMAGE_NAME}-test'
+                        dir 'workspace'
+                        label '${IMAGE_NAME}-test-image'
+                        args '-f Dockerfile.test .'
+                    }
+                }
 
                 failFast true
                 parallel {
-                    agent {
-                        dockerfile {
-                            filename '${IMAGE_NAME}-test'
-                            dir 'workspace'
-                            label '${IMAGE_NAME}-test-image'
-                            args '-f Dockerfile.test .'
-                        }
-                    }
                     stage ('Quality Test'){
-                        agent any
-
                         steps {
                             echo 'On Quality Test'
                             // npm lint
@@ -38,7 +36,6 @@ pipeline {
                         }
                     }
                     stage ('Unit Test'){
-                        agent any
 
                         steps {
                             echo 'On Unit Test'
@@ -46,7 +43,6 @@ pipeline {
                         }
                     }
                     stage ('Security Test'){
-                        agent any
 
                         steps {
                             echo 'On Security Test'
