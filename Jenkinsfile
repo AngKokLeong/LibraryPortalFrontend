@@ -27,7 +27,7 @@ pipeline {
                     stage ('Quality Test'){
                         agent {
                             dockerfile {
-                                filename '${DOCKERFILE_NAME}'
+                                filename ('${DOCKERFILE_NAME}')
                             }
                         }
                         steps {
