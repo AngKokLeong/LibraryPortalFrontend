@@ -25,29 +25,36 @@ pipeline {
                 parallel {
 
                     stage ('Quality Test'){
+                        agent {
+                            dockerfile {
+                                filename '${DOCKERFILE_NAME}'
+                            }
+                        }
                         steps {
                             echo 'On Quality Test'
 
                         }
                     }
                     stage ('Unit Test'){
-                        
+                        agent {
+                            dockerfile {
+                                filename '${DOCKERFILE_NAME}'
+                            }
+                        }
                         steps {
                             echo 'On Unit Test'
                             //run the unit test
                         }
                     }
                     stage ('Security Test'){
-
+                        agent {
+                            dockerfile {
+                                filename '${DOCKERFILE_NAME}'
+                            }
+                        }
                         steps {
                             echo 'On Security Test'
                         }
-                    }
-                }
-
-                agent {
-                    dockerfile {
-                        filename '${DOCKERFILE_NAME}'
                     }
                 }
                 
