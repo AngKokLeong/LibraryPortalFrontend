@@ -1,6 +1,9 @@
 pipeline {
         agent none
 
+        options {
+            parallelsAlwaysFailFast()
+        }
         environment {
             PRODUCTION = 'master'
             PREPROD = 'preprod'
@@ -19,8 +22,6 @@ pipeline {
             }
 
             stage ('Pre-Integration Test'){
-
-                failFast true
                 parallel {
 
                     stage ('Quality Test'){
