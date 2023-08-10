@@ -48,13 +48,12 @@ pipeline {
                         }
                     }
                 }
-
-                stage ('Build') {
-                    steps {
-                        echo "On Build"
-                    }
-                }
                 
+            }
+            stage ('Build') {
+                steps {
+                    echo "On Build"
+                }
             }
 
            
