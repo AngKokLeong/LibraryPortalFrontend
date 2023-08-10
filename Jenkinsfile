@@ -6,7 +6,7 @@ pipeline {
             PREPROD = 'preprod'
             DEVELOP = 'develop'
             DOCKERFILE_NAME = 'Dockerfile.test'
-            IMAGE_NAME = 'mlabouardy/movies-loader'
+            IMAGE_NAME = 'library-portal-frontend'
         }
 
         stages {
@@ -24,9 +24,8 @@ pipeline {
                 parallel {
 
                     stage ('Quality Test'){
-                        
-                      
                         steps {
+                            echo 'On Quality Test'
                             script {
                                 def imageTest= docker.build('${IMAGE_NAME}-test -f Dockerfile.test .')
 
@@ -34,9 +33,6 @@ pipeline {
                                     sh 'npx eslint ./src'
                                 }
                             }
-                            echo 'On Quality Test'
-                            // npm lint
-                            //sh 'node --version'
                         }
                     }
                     stage ('Unit Test'){
