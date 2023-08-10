@@ -1,5 +1,5 @@
 pipeline {
-        agent any
+        agent none
 
         environment {
             PRODUCTION = 'master'
@@ -25,9 +25,9 @@ pipeline {
                         args '-f Dockerfile.test .'
                     }
                 }
+
                 failFast true
                 parallel {
-
                     stage ('Quality Test'){
                         steps {
                             echo 'On Quality Test'
