@@ -18,15 +18,16 @@ pipeline {
 
             stage ('Pre-Integration Test'){
 
-                dockerfile {
-                    filename '${IMAGE_NAME}-test'
-                    dir 'workspace'
-                    label '${IMAGE_NAME}-test-image'
-                    args '-f Dockerfile.test .'
-                }
-
                 failFast true
                 parallel {
+                    agent {
+                        dockerfile {
+                            filename '${IMAGE_NAME}-test'
+                            dir 'workspace'
+                            label '${IMAGE_NAME}-test-image'
+                            args '-f Dockerfile.test .'
+                        }
+                    }
                     stage ('Quality Test'){
                         agent any
 
@@ -73,6 +74,9 @@ pipeline {
                             }
                         }
                     }
+
+                }
+
             }
 
             stage ('Build') {
@@ -127,5 +131,5 @@ pipeline {
                 }
             }
 
-        
+        }
 }
