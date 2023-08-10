@@ -1,7 +1,5 @@
 pipeline {
-        agent {
-            dockerfile true
-        }
+        agent none
 
         environment {
             PRODUCTION = 'master'
