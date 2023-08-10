@@ -74,7 +74,9 @@ pipeline {
                             }
                         }
                     }
+
                 }
+
             }
 
             stage ('Build') {
@@ -128,5 +130,6 @@ pipeline {
                     echo "On Deploy Production"
                 }
             }
+
         }
 }
