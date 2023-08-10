@@ -8,6 +8,7 @@ pipeline {
             PREPROD = 'preprod'
             DEVELOP = 'develop'
             DOCKERFILE_NAME = 'Dockerfile.test'
+            IMAGE_NAME = 'mlabouardy/movies-loader'
         }
 
         stages {
@@ -25,16 +26,19 @@ pipeline {
                 parallel {
 
                     stage ('Quality Test'){
-                        agent {
-                            dockerfile {
-                                filename '${DOCKERFILE_NAME}'
-                            }
-                        }
+                        
                       
                         steps {
+                            script {
+                                def imageTest= docker.build('${IMAGE_NAME}-test -f Dockerfile.test .')
+
+                                imageTest.inside{
+                                    sh 'npm lint'
+                                }
+                            }
                             echo 'On Quality Test'
                             // npm lint
-                            sh 'node --version'
+                            //sh 'node --version'
                         }
                     }
                     stage ('Unit Test'){
