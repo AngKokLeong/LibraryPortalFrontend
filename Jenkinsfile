@@ -17,6 +17,7 @@ pipeline {
             }
 
             stage ('Pre-Integration Test'){
+
                 failFast true
                 parallel {
 
@@ -29,7 +30,7 @@ pipeline {
                                 args '-f Dockerfile.test .'
                             }
                         }
-
+                      
                         steps {
                             echo 'On Quality Test'
                             // npm lint
@@ -37,6 +38,7 @@ pipeline {
                         }
                     }
                     stage ('Unit Test'){
+
                         agent {
                             dockerfile {
                                 filename '${IMAGE_NAME}-test'
