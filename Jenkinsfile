@@ -1,6 +1,3 @@
-//objective: to find a way to allow different branches to have different stage
-// possible moves: use when and allOf by checking branches and 
-
 pipeline {
         agent none
 
@@ -8,6 +5,7 @@ pipeline {
             PRODUCTION = 'master'
             PREPROD = 'preprod'
             DEVELOP = 'develop'
+            IMAGE_NAME = 'LIBRARY-PORTAL-FRONTEND'
         }
         stages{
             stage ('Checkout') {
@@ -17,41 +15,52 @@ pipeline {
                     checkout scm
                 }
             }
-            //setup parallel job to execute the test
+
             stage ('Pre-Integration Test'){
 
-                // to exit the stage quickly if anyone of the stage fails
+                dockerfile {
+                    filename '${IMAGE_NAME}-test'
+                    dir 'workspace'
+                    label '${IMAGE_NAME}-test-image'
+                    args '-f Dockerfile.test .'
+                }
+
                 failFast true
                 parallel {
                     stage ('Quality Test'){
                         agent any
 
                         steps {
-                            echo "On Quality Test"
+                            echo 'On Quality Test'
+                            // npm lint
+                            sh 'node --version'
                         }
                     }
                     stage ('Unit Test'){
                         agent any
 
                         steps {
-                            echo "On Unit Test"
+                            echo 'On Unit Test'
+                            //run the unit test
                         }
                     }
                     stage ('Security Test'){
                         agent any
 
                         steps {
-                            echo "On Security Test"
+                            echo 'On Security Test'
                         }
                     }
                 }
                 
             }
+
             stage ('Build') {
                 agent any
 
                 steps {
-                    echo "On Build"
+                    echo 'On Build'
+                    //run the npm build
                 }
             }
             stage ('Push') {
@@ -67,20 +76,34 @@ pipeline {
 
                 steps {
                     echo "On Push"
+                    //push to sonatype
                 }
             }
-            stage ('Deploy') {
-                agent any
 
+            stage ('Deploy Pre-Production'){
+                agent any
                 when {
                     anyOf {
-                        branch '${PRODUCTION}'
                         branch '${PREPROD}'
                     }
                 }
 
                 steps {
-                    echo "On Deploy"
+                    echo "On Deploy Pre Production"
+                }
+            }
+
+            stage ('Deploy Production') {
+                agent any
+
+                when {
+                    anyOf {
+                        branch '${PRODUCTION}'
+                    }
+                }
+
+                steps {
+                    echo "On Deploy Production"
                 }
             }
 
