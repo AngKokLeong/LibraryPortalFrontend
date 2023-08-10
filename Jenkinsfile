@@ -17,18 +17,19 @@ pipeline {
             }
 
             stage ('Pre-Integration Test'){
-                agent {
-                    dockerfile {
-                        filename '${IMAGE_NAME}-test'
-                        dir 'workspace'
-                        label '${IMAGE_NAME}-test-image'
-                        args '-f Dockerfile.test .'
-                    }
-                }
-
                 failFast true
                 parallel {
+
                     stage ('Quality Test'){
+                        agent {
+                            dockerfile {
+                                filename '${IMAGE_NAME}-test'
+                                dir 'workspace'
+                                label '${IMAGE_NAME}-test-image'
+                                args '-f Dockerfile.test .'
+                            }
+                        }
+
                         steps {
                             echo 'On Quality Test'
                             // npm lint
@@ -36,6 +37,14 @@ pipeline {
                         }
                     }
                     stage ('Unit Test'){
+                        agent {
+                            dockerfile {
+                                filename '${IMAGE_NAME}-test'
+                                dir 'workspace'
+                                label '${IMAGE_NAME}-test-image'
+                                args '-f Dockerfile.test .'
+                            }
+                        }
 
                         steps {
                             echo 'On Unit Test'
@@ -43,6 +52,14 @@ pipeline {
                         }
                     }
                     stage ('Security Test'){
+                        agent {
+                            dockerfile {
+                                filename '${IMAGE_NAME}-test'
+                                dir 'workspace'
+                                label '${IMAGE_NAME}-test-image'
+                                args '-f Dockerfile.test .'
+                            }
+                        }
 
                         steps {
                             echo 'On Security Test'
