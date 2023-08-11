@@ -1,6 +1,9 @@
 pipeline {
         agent none
 
+        options {
+            parallelsAlwaysFailFast()
+        }
         environment {
             PRODUCTION = 'master'
             PREPROD = 'preprod'
@@ -19,31 +22,36 @@ pipeline {
             }
 
             stage ('Pre-Integration Test'){
-
-                failFast true
                 parallel {
 
                     stage ('Quality Test'){
+                        agent {
+                            dockerfile {
+                                filename "${DOCKERFILE_NAME}"
+                            }
+                        }
                         steps {
                             echo 'On Quality Test'
-                            script {
-                                def imageTest= docker.build('${IMAGE_NAME}-test -f Dockerfile.test .')
-
-                                imageTest.inside{
-                                    sh 'npx eslint ./src'
-                                }
-                            }
+                            sh 'npx eslint ./src'
                         }
                     }
                     stage ('Unit Test'){
-                        
+                        agent {
+                            dockerfile {
+                                filename '${DOCKERFILE_NAME}'
+                            }
+                        }
                         steps {
                             echo 'On Unit Test'
                             //run the unit test
                         }
                     }
                     stage ('Security Test'){
-
+                        agent {
+                            dockerfile {
+                                filename '${DOCKERFILE_NAME}'
+                            }
+                        }
                         steps {
                             echo 'On Security Test'
                         }
