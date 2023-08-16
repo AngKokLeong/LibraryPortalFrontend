@@ -1,5 +1,5 @@
 pipeline {
-        agent none
+        agent any
 
         options {
             parallelsAlwaysFailFast()
@@ -14,8 +14,6 @@ pipeline {
 
         stages {
             stage ('Checkout') {
-                agent any
-
                 steps {
                     checkout scm
                 }
@@ -53,7 +51,7 @@ pipeline {
 
           
             stage ('Static Code Analysis'){
-                        agent any
+                        
                         script {
                             // requires SonarQube Scanner 2.8+
                             scannerHome = tool 'SonarQube-Scanner'
@@ -65,7 +63,7 @@ pipeline {
                         }
             }
             stage ('Quality Gate'){
-                        agent any
+                    
                         steps {
                             timeout(time: 5, unit: 'MINUTES') {
                                 waitForQualityGate abortPipeline: true
@@ -78,7 +76,7 @@ pipeline {
             
 
             stage ('Build') {
-                agent any
+           
 
                 steps {
                     echo 'On Build'
@@ -86,7 +84,7 @@ pipeline {
                 }
             }
             stage ('Push') {
-                agent any
+           
 
                 when {
                     anyOf {
@@ -103,7 +101,7 @@ pipeline {
             }
 
             stage ('Deploy Pre-Production'){
-                agent any
+                
                 when {
                     anyOf {
                         branch '${PREPROD}'
@@ -116,7 +114,7 @@ pipeline {
             }
 
             stage ('Deploy Production') {
-                agent any
+                
 
                 when {
                     anyOf {
