@@ -57,7 +57,7 @@ pipeline {
                                 scannerHome = tool 'SonarQube-Scanner'
                             }
                             withSonarQubeEnv('SonarQube-Library-Portal-Frontend') {
-                                sh "${scannerHome}/bin/sonar-scanner"
+                                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Library-Portal-Frontend -Dsonar.language=typescript -Dsonar.sources=src"
                             }
                         }
             }
