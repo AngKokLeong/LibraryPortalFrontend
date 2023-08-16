@@ -51,29 +51,27 @@ pipeline {
                 
             }*/
 
-            stage ('SonarQube Analysis') {
-                failFast true
-                parallel {
-                    stage ('Static Code Analysis'){
+          
+            stage ('Static Code Analysis'){
                         agent any
                         steps {
-                            withSonarQubeEnv('sonarqube') {
+                            withSonarQubeEnv('SonarQube-Library-Portal-Frontend') {
                                 sh 'sonar-scanner'
                             }
                         }
-                    }
-                    stage ('Quality Gate'){
+            }
+            stage ('Quality Gate'){
                         agent any
                         steps {
                             timeout(time: 5, unit: 'MINUTES') {
                                 waitForQualityGate abortPipeline: true
                             }
                         }
-                    }
-
-                }
-
             }
+
+                
+
+            
 
             stage ('Build') {
                 agent any
