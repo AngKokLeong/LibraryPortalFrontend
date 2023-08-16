@@ -54,9 +54,13 @@ pipeline {
           
             stage ('Static Code Analysis'){
                         agent any
+                        script {
+                            // requires SonarQube Scanner 2.8+
+                            scannerHome = tool 'SonarQube-Scanner'
+                        }
                         steps {
                             withSonarQubeEnv('SonarQube-Library-Portal-Frontend') {
-                                sh 'sonar-scanner'
+                                sh "${scannerHome}/bin/sonar-scanner"
                             }
                         }
             }
