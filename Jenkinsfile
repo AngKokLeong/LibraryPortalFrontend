@@ -25,33 +25,21 @@ pipeline {
                 parallel {
 
                     stage ('Quality Test'){
-                        agent {
-                            dockerfile {
-                                filename "${DOCKERFILE_NAME}"
-                            }
-                        }
                         steps {
                             echo 'On Quality Test'
+                            //https://eslint.org/docs/latest/use/command-line-interface#--max-warnings
+                            //purpose: to get the return value
+                            //https://www.jenkins.io/doc/pipeline/steps/workflow-durable-task-step/#sh-shell-script
                             sh 'npx eslint ./src'
                         }
                     }
                     stage ('Unit Test'){
-                        agent {
-                            dockerfile {
-                                filename '${DOCKERFILE_NAME}'
-                            }
-                        }
                         steps {
                             echo 'On Unit Test'
                             //run the unit test
                         }
                     }
                     stage ('Security Test'){
-                        agent {
-                            dockerfile {
-                                filename '${DOCKERFILE_NAME}'
-                            }
-                        }
                         steps {
                             echo 'On Security Test'
                         }
