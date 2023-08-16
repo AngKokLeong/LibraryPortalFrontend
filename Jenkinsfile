@@ -25,6 +25,7 @@ pipeline {
                 parallel {
 
                     stage ('Quality Test'){
+                        agent any
                         steps {
                             echo 'On Quality Test'
                             //https://eslint.org/docs/latest/use/command-line-interface#--max-warnings
@@ -34,12 +35,14 @@ pipeline {
                         }
                     }
                     stage ('Unit Test'){
+                        agent any
                         steps {
                             echo 'On Unit Test'
                             //run the unit test
                         }
                     }
                     stage ('Security Test'){
+                        agent any
                         steps {
                             echo 'On Security Test'
                         }
