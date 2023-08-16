@@ -4,6 +4,7 @@ pipeline {
         options {
             parallelsAlwaysFailFast()
         }
+
         environment {
             PRODUCTION = 'master'
             PREPROD = 'preprod'
@@ -75,10 +76,13 @@ pipeline {
             
 
             stage ('Build') {
-           
+                
 
                 steps {
-                    echo 'On Build'
+                    script {
+                        nodeHome = tool 'NodeJS'
+                    }
+                    sh "echo ${nodeHome}"
                     //run the npm build
                 }
             }
