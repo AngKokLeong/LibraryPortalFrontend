@@ -56,9 +56,10 @@ pipeline {
                             script {
                             // requires SonarQube Scanner 2.8+
                                 scannerHome = tool 'SonarQube-Scanner'
+                                nodeHome = tool 'NodeJS'
                             }
                             withSonarQubeEnv('SonarQube-Library-Portal-Frontend') {
-                                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Library-Portal-Frontend -Dsonar.language=typescript -Dsonar.sources=src"
+                                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Library-Portal-Frontend -Dsonar.language=typescript -Dsonar.sources=src -Dsonar.sourceEncoding=UTF-8"
                             }
                         }
             }
