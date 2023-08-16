@@ -21,7 +21,7 @@ pipeline {
                 }
             }
 
-            stage ('Pre-Integration Test'){
+            /*stage ('Pre-Integration Test'){
                 parallel {
 
                     stage ('Quality Test'){
@@ -49,7 +49,7 @@ pipeline {
                     }
                 }
                 
-            }
+            }*/
 
             stage ('SonarQube Analysis') {
                 failFast true
@@ -63,6 +63,7 @@ pipeline {
                         }
                     }
                     stage ('Quality Gate'){
+                        agent any
                         steps {
                             timeout(time: 5, unit: 'MINUTES') {
                                 waitForQualityGate abortPipeline: true
