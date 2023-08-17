@@ -72,9 +72,6 @@ pipeline {
                         }
             }
 
-                
-
-            
 
             stage ('Build') {
                 
@@ -83,7 +80,7 @@ pipeline {
                     script {
                         nodeHome = tool 'NodeJS'
                     }
-                    sh "echo ${nodeHome}"
+                    sh "echo ${nodeHome}/bin "
                     //run the npm build
                 }
             }
