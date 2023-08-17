@@ -80,7 +80,7 @@ pipeline {
                     script {
                         nodeHome = tool 'NodeJS'
                     }
-                    sh "echo ${nodeHome}/bin/npm run build "
+                    sh "${nodeHome}/bin/npm run build "
                     //run the npm build
                 }
             }
