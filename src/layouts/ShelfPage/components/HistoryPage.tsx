@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {useOktaAuth} from '@okta/okta-react';
 import { useEffect, useState } from 'react';
 import HistoryModel from '../../../models/HistoryModel';
@@ -23,10 +24,11 @@ export const HistoryPage = () => {
     useEffect(() => {
         const fetchUserHistory = async () => {
             if (authState && authState.isAuthenticated){
-                const url = `http://localhost:8080/api/histories/search/findBooksByUsserEmail/?userEmail=${authState.accessToken?.claims.sub}&page=${currentPage - 1}&size=5`;
+                const url = `http://localhost:8080/api/histories/search/findBooksByUserEmail?userEmail=${authState.accessToken?.claims.sub}&page=${currentPage - 1}&size=5`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
+                        Authorization: `Bearer ${authState.accessToken?.accessToken}`,
                         'Content-Type': 'application/json'
                     }
                 };
@@ -76,16 +78,16 @@ export const HistoryPage = () => {
                                     <div className="col-md-2">
                                         <div className="d-none d-lg-block">
                                             {
-                                                history.image ? 
-                                                    <img src={history.image} width='123' height='196' alt='book' />
+                                                history.img ? 
+                                                    <img src={history.img} width='123' height='196' alt='book' />
                                                 :
                                                     <img src={require('./../../../Images/BooksImages/book-luv2code-1000.png')} width='123' height='196' alt='default' />
                                             }
                                         </div>
                                         <div className="d-lg-none d-flex justify-content-center align-items-center">
                                             {
-                                                history.image ? 
-                                                    <img src={history.image} width='123' height='196' alt='book' />
+                                                history.img ? 
+                                                    <img src={history.img} width='123' height='196' alt='book' />
                                                 :
                                                     <img src={require('./../../../Images/BooksImages/book-luv2code-1000.png')} width='123' height='196' alt='default' />
                                             }
