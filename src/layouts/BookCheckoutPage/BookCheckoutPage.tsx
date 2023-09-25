@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 import BookModel from "../../models/BookModel";
 import { SpinnerLoading } from '../Utils/SpinnerLoading';
@@ -35,6 +37,7 @@ export const BookCheckoutPage = () => {
 
     const bookId = (window.location.pathname).split('/')[2];
 
+    /*
     useEffect(() => {
 
     }, [isCheckOut]);
@@ -42,11 +45,11 @@ export const BookCheckoutPage = () => {
     useEffect(() => {
         
     }, []);
-
+    */
     useEffect(() => {
         const fetchUserReviewBook = async () => {
             if (authState && authState.isAuthenticated){
-                const url = `http://localhost:8080/api/reviews/secure/user/book?bookId=${bookId}`;
+                const url: string = `http://localhost:8080/api/reviews/secure/user/book?bookId=${bookId}`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -120,7 +123,7 @@ export const BookCheckoutPage = () => {
 
             const loadedReviews: ReviewModel[] = [];
 
-            let weightedStarReviews: number = 0;
+            let weightedStarReviews = 0;
 
             for (const key in responseData){
                 loadedReviews.push({
@@ -154,7 +157,7 @@ export const BookCheckoutPage = () => {
     useEffect(() => {
         const fetchUserCurrentLoansCount = async () => {
             if (authState && authState.isAuthenticated){
-                const url = `http://localhost:8080/api/books/secure/currentloans/count`;
+                const url: string = `http://localhost:8080/api/books/secure/currentloans/count`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -183,7 +186,7 @@ export const BookCheckoutPage = () => {
     useEffect(() => {
         const fetchUserCheckoutBook = async () => {
             if (authState && authState.isAuthenticated){
-                const url = `http://localhost:8080/api/books/secure/ischeckout/byuser?bookId=${bookId}`;
+                const url: string = `http://localhost:8080/api/books/secure/ischeckout/byuser?bookId=${bookId}`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -227,7 +230,7 @@ export const BookCheckoutPage = () => {
     }
 
     async function checkoutBook(){
-        const url = `http://localhost:8080/api/books/secure/checkout?bookId=${book?.id}`;
+        const url: string = `http://localhost:8080/api/books/secure/checkout?bookId=${book?.id}`;
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -252,7 +255,7 @@ export const BookCheckoutPage = () => {
         }
 
         const reviewRequestModel = new ReviewRequestModel(starInput, bookId, reviewDescription);
-        const url = `http://localhost:8080/api/reviews/secure`;
+        const url: string = `http://localhost:8080/api/reviews/secure`;
         const requestOptions = {
             method: 'POST',
             headers: {

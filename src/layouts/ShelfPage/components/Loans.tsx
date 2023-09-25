@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
 import ShelfCurrentLoans from "../../../models/ShelfCurrentLoans";
