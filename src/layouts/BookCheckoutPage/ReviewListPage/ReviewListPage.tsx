@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable prefer-const */
 import { useEffect, useState } from "react";
 import ReviewModel from "../../../models/ReviewModel";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";

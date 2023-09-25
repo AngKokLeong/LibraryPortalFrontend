@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import { ReturnBook } from "./ReturnBook";
 import { useEffect, useState } from 'react';
 import BookModel from  "../../../models/BookModel";
@@ -119,7 +121,7 @@ export const Carousel = () => {
 
             <div className='d-lg-none mt-3'>
                 <div className='row d-flex justify-content-center align-items-center'>
-                        <ReturnBook book={books[7]} key={books[7].id} />
+                    <ReturnBook book={books[7]} key = {books[7].id} />
                 </div>
                 <div className='homepage-carousel-title mt-3'>
                     <Link className='btn btn-outline-secondary btn-lg' to={SEARCH_ROUTE}>View More</Link>
