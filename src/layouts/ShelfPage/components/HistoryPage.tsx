@@ -28,7 +28,6 @@ export const HistoryPage = () => {
                 const requestOptions = {
                     method: 'GET',
                     headers: {
-                        Authorization: `Bearer ${authState.accessToken?.accessToken}`,
                         'Content-Type': 'application/json'
                     }
                 };
@@ -38,9 +37,10 @@ export const HistoryPage = () => {
                 }
                 
                 const historyResponseJson = await historyResponse.json();
-
+               
                 setHistories(historyResponseJson._embedded.histories);
                 setTotalPages(historyResponseJson.page.totalPages);
+                setIsLoadingHistory(false);
             }
         }
         fetchUserHistory().catch((error: any) => {
@@ -67,7 +67,7 @@ export const HistoryPage = () => {
 
     return (
         <div className="mt-2">
-            {
+            {   
                 histories.length > 0 ? 
                 <>
                     <h5>Recent History:</h5>
@@ -79,7 +79,7 @@ export const HistoryPage = () => {
                                         <div className="d-none d-lg-block">
                                             {
                                                 history.img ? 
-                                                    <img src={history.img} width='123' height='196' alt='book' />
+                                                    <img src={"data:image/png;base64," + history.img} width='123' height='196' alt='book' />
                                                 :
                                                     <img src={require('./../../../Images/BooksImages/book-luv2code-1000.png')} width='123' height='196' alt='default' />
                                             }
@@ -87,7 +87,7 @@ export const HistoryPage = () => {
                                         <div className="d-lg-none d-flex justify-content-center align-items-center">
                                             {
                                                 history.img ? 
-                                                    <img src={history.img} width='123' height='196' alt='book' />
+                                                    <img src={"data:image/png;base64," + history.img} width='123' height='196' alt='book' />
                                                 :
                                                     <img src={require('./../../../Images/BooksImages/book-luv2code-1000.png')} width='123' height='196' alt='default' />
                                             }
