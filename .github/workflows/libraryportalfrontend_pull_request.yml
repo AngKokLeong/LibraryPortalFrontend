@@ -24,13 +24,7 @@ jobs:
 
     - name: Install Node Dependencies
       run: |
-        npm install -D webpack-cli
         npm install
-
-    
-    - name: Execute Webpack
-      run: |
-        npx webpack
 
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
