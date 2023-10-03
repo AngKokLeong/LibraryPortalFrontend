@@ -8,7 +8,20 @@ export const ManageLibraryPage = () => {
     const [changeQuantityOfBooksClick, setChangeQuantityOfBooksClick] = useState(false);
     const [messagesClick, setMessagesClick] = useState(false);
 
+    function addBookClickEvent() {
+        setChangeQuantityOfBooksClick(false);
+        setMessagesClick(false);
+    }
 
+    function changeQuantityOfBooksClickEvent(){
+        setChangeQuantityOfBooksClick(true);
+        setMessagesClick(false);
+    }
+
+    function messagesClickEvent() {
+        setChangeQuantityOfBooksClick(false);
+        setMessagesClick(true);
+    }
 
     return (
 
@@ -17,17 +30,17 @@ export const ManageLibraryPage = () => {
                 <h3>Manage Library</h3>
                 <nav>
                     <div className='nav nav-tabs' id='nav-tab' role='tablist'>
-                        <button className='nav-link active' id='nav-add-book-tab' data-bs-toggle='tab' data-bs-target='#nav-add-book' 
+                        <button onClick={addBookClickEvent} className='nav-link active' id='nav-add-book-tab' data-bs-toggle='tab' data-bs-target='#nav-add-book' 
                         type='button' role='tab' aria-controls='nav-add-book' aria-selected='false'>
                             Add New Book
                         </button>
-                        <button className='nav-link' id='nav-quantity-tab' data-bs-toggle='tab' data-bs-target='#nav-quantity' 
+                        <button onClick={changeQuantityOfBooksClickEvent} className='nav-link' id='nav-quantity-tab' data-bs-toggle='tab' data-bs-target='#nav-quantity' 
                         type='button' role='tab' aria-controls='nav-quantity' aria-selected='true'>
-                            Change Quantity
+                            {changeQuantityOfBooksClick ? <>Change Quantity</> : <></>}
                         </button>
-                        <button className='nav-link' id='nav-messages-tab' data-bs-toggle='tab' data-bs-target='#nav-messages' 
+                        <button onClick={messagesClickEvent} className='nav-link' id='nav-messages-tab' data-bs-toggle='tab' data-bs-target='#nav-messages' 
                         type='button' role='tab' aria-controls='nav-messages' aria-selected='true'>
-                            Messages
+                            {messagesClick ? <>Admin Messages</> : <></>}
                         </button>
                     </div>
                 </nav>
