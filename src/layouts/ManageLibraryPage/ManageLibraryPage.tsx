@@ -18,15 +18,15 @@ export const ManageLibraryPage = () => {
                 <nav>
                     <div className='nav nav-tabs' id='nav-tab' role='tablist'>
                         <button className='nav-link active' id='nav-add-book-tab' data-bs-toggle='tab' data-bs-target='#nav-add-book' 
-                        type='button' role='tab' aria-control='nav-add-book' aria-selected='false'>
+                        type='button' role='tab' aria-controls='nav-add-book' aria-selected='false'>
                             Add New Book
                         </button>
                         <button className='nav-link' id='nav-quantity-tab' data-bs-toggle='tab' data-bs-target='#nav-quantity' 
-                        type='button' role='tab' aria-control='nav-quantity' aria-selected='true'>
+                        type='button' role='tab' aria-controls='nav-quantity' aria-selected='true'>
                             Change Quantity
                         </button>
-                        <button className='nav-link' id='nav-messages-tab' data-bs-toggle='tab' data-bs-target='#nav-messsages' 
-                        type='button' role='tab' aria-control='nav-messages' aria-selected='true'>
+                        <button className='nav-link' id='nav-messages-tab' data-bs-toggle='tab' data-bs-target='#nav-messages' 
+                        type='button' role='tab' aria-controls='nav-messages' aria-selected='true'>
                             Messages
                         </button>
                     </div>
