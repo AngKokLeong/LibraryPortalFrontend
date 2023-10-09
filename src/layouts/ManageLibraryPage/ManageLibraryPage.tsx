@@ -1,14 +1,9 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { useState } from "react";
-<<<<<<< HEAD
+
 import { Redirect } from "react-router-dom";
-=======
-<<<<<<< Updated upstream
-=======
-import { Redirect } from "react-router-dom";
-import { AdminMessages } from "./components/AdminMessages";
->>>>>>> Stashed changes
->>>>>>> 4f52931 (LIB-281 moved the state to the tab content to show the content properly)
+
+
 
 export const ManageLibraryPage = () => {
 
@@ -32,9 +27,11 @@ export const ManageLibraryPage = () => {
         setMessagesClick(true);
     }
 
+
     if (authState?.accessToken?.claims.userType === undefined){
         return <Redirect to='/home' />
     }
+
 
     return (
 
