@@ -1,6 +1,9 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { useState } from "react";
+
 import { Redirect } from "react-router-dom";
+
+
 
 export const ManageLibraryPage = () => {
 
@@ -24,9 +27,11 @@ export const ManageLibraryPage = () => {
         setMessagesClick(true);
     }
 
+
     if (authState?.accessToken?.claims.userType === undefined){
         return <Redirect to='/home' />
     }
+
 
     return (
 
@@ -41,11 +46,11 @@ export const ManageLibraryPage = () => {
                         </button>
                         <button onClick={changeQuantityOfBooksClickEvent} className='nav-link' id='nav-quantity-tab' data-bs-toggle='tab' data-bs-target='#nav-quantity' 
                         type='button' role='tab' aria-controls='nav-quantity' aria-selected='true'>
-                            {changeQuantityOfBooksClick ? <>Change Quantity</> : <></>}
+                            Change Quantity
                         </button>
                         <button onClick={messagesClickEvent} className='nav-link' id='nav-messages-tab' data-bs-toggle='tab' data-bs-target='#nav-messages' 
                         type='button' role='tab' aria-controls='nav-messages' aria-selected='true'>
-                            {messagesClick ? <>Admin Messages</> : <></>}
+                            Admin Messages
                         </button>
                     </div>
                 </nav>
@@ -55,10 +60,10 @@ export const ManageLibraryPage = () => {
                         Add New Book
                     </div>
                     <div className='tab-pane fade' id='nav-quantity' role='tabpanel' aria-labelledby='nav-quantity-tab'>
-                        Change Quantity
+                        {changeQuantityOfBooksClick ? <>Change Quantity</> : <></>}
                     </div>
                     <div className='tab-pane fade' id='nav-messages' role='tabpanel' aria-labelledby='nav-messages-tab'>
-                        Admin Messages
+                        {messagesClick ? <>Admin Messages</> : <></>}
                     </div>
                 </div>
             </div>
