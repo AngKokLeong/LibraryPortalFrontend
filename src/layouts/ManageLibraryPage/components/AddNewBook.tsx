@@ -2,7 +2,7 @@ import { useOktaAuth } from "@okta/okta-react"
 import { useState } from "react";
 
 export const AddNewBook = () => {
-    const { authState } = useOktaAuth():
+    const { authState } = useOktaAuth();
     
     // Book State
 
