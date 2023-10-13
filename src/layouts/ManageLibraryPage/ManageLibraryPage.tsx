@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { Redirect } from "react-router-dom";
 import { AdminMessages } from "./components/AdminMessages";
+import { AddNewBook } from "./components/AddNewBook";
 
 
 export const ManageLibraryPage = () => {
@@ -57,7 +58,7 @@ export const ManageLibraryPage = () => {
 
                 <div className='tab-content' id='nav-tabContent'>
                     <div className='tab-pane fade show active' id='nav-add-book' role='tabpanel' aria-labelledby='nav-add-book-tab'>
-                        Add New Book
+                        <AddNewBook />
                     </div>
                     <div className='tab-pane fade' id='nav-quantity' role='tabpanel' aria-labelledby='nav-quantity-tab'>
                         {changeQuantityOfBooksClick ? <>Change Quantity</> : <></>}
