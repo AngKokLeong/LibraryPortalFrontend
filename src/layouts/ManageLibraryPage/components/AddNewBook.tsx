@@ -22,6 +22,26 @@ export const AddNewBook = () => {
         setCategory(value);
     }
 
+
+
+    async function base64ConversionForImages(image: any){
+        if (image.target.files[0]){
+            getBase64(image.target.files[0]);
+        }
+    }
+
+    function getBase64(file: any){
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+            setSelectedImage(reader.result);
+        };
+
+        reader.onerror = function (error){
+            console.log('Error', error);
+        };
+
+    }
+
     return (
         <div className="container mt-5 mb-5">
             {displaySuccess &&
@@ -74,7 +94,7 @@ export const AddNewBook = () => {
                             <input type='number' className='form-control' name='copies' required onChange={e => setCopies(Number(e.target.value))} value={copies} />
                         </div>
 
-                        <input type='file' />
+                        <input type='file' onChange={image => base64ConversionForImages(image)}/>
 
                         <div>
                             <button type='button' className='btn btn-primary mt-3'>
