@@ -1,5 +1,6 @@
 import { useOktaAuth } from "@okta/okta-react"
 import { useState } from "react";
+import AddBookRequestModel from "../../../models/AddBookRequestModel";
 
 export const AddNewBook = () => {
     const { authState } = useOktaAuth();
@@ -22,7 +23,6 @@ export const AddNewBook = () => {
     }
 
     async function base64ConversionForImages(image: any){
-        console.log(image);
         if (image.target.files[0]){
             getBase64(image.target.files[0]);
         }
@@ -32,8 +32,56 @@ export const AddNewBook = () => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
-        reader.onload = () => setSelectedImage(reader.result);
+        reader.onload = () => setSelectedImage(retrieveBase64EncodedString(reader.result as string));
+        
         reader.onerror = (error: ProgressEvent<FileReader>) => console.log('Error', error);
+    }
+
+    function retrieveBase64EncodedString(base64: string) {
+        // validate if data:*/*;base64 exist in the string
+        // /data:image/(png|jpeg);base64,/
+        
+        const condition = new RegExp(`data:image/(png|jpeg);base64,`, "g");
+
+        return base64.replace(condition, '');
+    }
+
+    async function submitNewBook() {
+        const url = `http://localhost:8080/api/admin/secure/add/book`;
+        
+        if (authState?.isAuthenticated && title != '' && author != '' && category != 'Category' && description != '' && copies > 0){
+            const book: AddBookRequestModel = new AddBookRequestModel(title, author, description, copies, category);
+            
+            book.img = selectedImage;
+            
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(book)
+            };
+
+            const submitNewBookRequest = await fetch(url, requestOptions);
+            if (!submitNewBookRequest.ok){
+                throw new Error('Something went wrong!');
+            }
+
+            //Reset the state
+            setTitle('');
+            setAuthor('');
+            setDescription('');
+            setCopies(0);
+            setCategory('Category');
+            setSelectedImage(null);
+            setDisplayWarning(false);
+            setDisplaySuccess(true);
+
+        }else {
+            setDisplayWarning(true);
+            setDisplaySuccess(false);
+        }
     }
 
     return (
@@ -91,7 +139,7 @@ export const AddNewBook = () => {
                         <input type='file' onChange={image => base64ConversionForImages(image)}/>
 
                         <div>
-                            <button type='button' className='btn btn-primary mt-3'>
+                            <button type='button' className='btn btn-primary mt-3' onClick={submitNewBook}>
                                 Add Book
                             </button>
 
