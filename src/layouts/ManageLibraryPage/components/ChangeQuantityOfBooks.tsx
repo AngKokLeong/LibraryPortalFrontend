@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import BookModel from "../../../models/BookModel";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Pagination } from "../../Utils/Pagination";
+import { ChangeQuantityOfBook } from "./ChangeQuantityOfBook";
 
 export const ChangeQuantityOfBooks = () => {
 
@@ -16,7 +17,7 @@ export const ChangeQuantityOfBooks = () => {
 
     useEffect(() => {
         const fetchBooks = async () => {
-            const baseUrl: string = `http://localhost:8080/api/books?page=${currentPage - 1}&size=${booksPerPage}`;
+            const baseUrl = `http://localhost:8080/api/books?page=${currentPage - 1}&size=${booksPerPage}`;
 
             const response = await fetch(baseUrl);
 
@@ -58,7 +59,7 @@ export const ChangeQuantityOfBooks = () => {
 
     const indexOfLastBook: number = currentPage * booksPerPage;
     const indexOfFirstBook: number = indexOfLastBook - booksPerPage;
-    let lastItem = booksPerPage * currentPage <= totalAmountOfBooks ? booksPerPage * currentPage : totalAmountOfBooks;
+    const lastItem = booksPerPage * currentPage <= totalAmountOfBooks ? booksPerPage * currentPage : totalAmountOfBooks;
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
     if (isLoading) {
@@ -88,7 +89,7 @@ export const ChangeQuantityOfBooks = () => {
                     </p>
                     {
                         books.map(book => (
-                                <p>Display different quantity of books</p>
+                                <ChangeQuantityOfBook book={book} />
                             )
                         )
                     }
