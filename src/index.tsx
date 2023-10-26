@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import { App } from './App';
+import {loadStripe} from '@stripe/stripe-js';
+import {Elements} from '@stripe/react-stripe-js';
+
+const stripePromise = loadStripe('pk_test_51O4gTPBkytsAuvsc6vRSJAOhyzeGqblYgAjE1iCqg3KVMblGrJ2fjlQjJREWvu5LmKnl2FBX8bMpk9zk6saFXyYo00H3540rzM');
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,7 +14,9 @@ const root = ReactDOM.createRoot(
 root.render(
  
     <BrowserRouter>
-      <App />
+      <Elements stripe={stripePromise}>  
+        <App />
+      </Elements>
     </BrowserRouter>
  
 );
