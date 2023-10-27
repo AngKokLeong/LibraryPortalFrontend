@@ -37,15 +37,10 @@ export const BookCheckoutPage = () => {
 
     const bookId = (window.location.pathname).split('/')[2];
 
-    /*
-    useEffect(() => {
 
-    }, [isCheckOut]);
+    // Validate Existing Outstanding payment
+    const [displayError, setDisplayError] = useState(false);
 
-    useEffect(() => {
-        
-    }, []);
-    */
     useEffect(() => {
         const fetchUserReviewBook = async () => {
             if (authState && authState.isAuthenticated){
@@ -242,11 +237,16 @@ export const BookCheckoutPage = () => {
         const checkoutResponse = await fetch(url, requestOptions);
 
         if (!checkoutResponse.ok){
-            throw new Error("Something went wrong!");
+            setDisplayError(true);
+            //throw new Error("Something went wrong!");
+        }else {
+            setDisplayError(false);
+            setIsCheckOut(true);
         }
 
-        setIsCheckOut(true);
+  
     }
+
 
     async function submitReview(starInput: number, reviewDescription: string){
         let bookId: number = 0;
@@ -276,6 +276,14 @@ export const BookCheckoutPage = () => {
     return (
         <div>
             <div className='container d-none d-lg-block'>
+
+                {displayError && 
+                    
+                    <div className="alert alert-danger mt-3" role='alert'>
+                        Please pay outstanding fees and/or return late book(s).
+                    </div>    
+                }
+
                 <div className='row mt-5'>
                     <div className='col-sm-2 col-md-2'>
                         {
@@ -301,6 +309,13 @@ export const BookCheckoutPage = () => {
 
             </div>
             <div className='container d-lg-none mt-5'>
+                {displayError && 
+                    
+                    <div className="alert alert-danger mt-5" role='alert'>
+                        Please pay outstanding fees and/or return late book(s).
+                    </div>    
+                }
+
                 <div className='d-flex justify-content-center align-items-center'>
                         {
                             book?.img ?
