@@ -88,13 +88,12 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+This project contains the Frontend implementation of the Library Web Portal. This project is written using React library and Typescript.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
+Features Implemented
+* User Authentication using Okta
+* Stripe Payment 
+* Payment Form created using custom layout React Component using Stripe Elements which are compliant to PCI DSS (Payment Card Industry Data Security Standard)
 
 Jira Board: https://libraryportal.atlassian.net/jira/software/projects/LIB/boards/4 
 
