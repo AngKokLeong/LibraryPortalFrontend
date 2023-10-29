@@ -252,7 +252,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
-[Rancher-Desktop]: https://img.shields.io/badge/-Rancher-black?logo=rancher&style=for-the-badge
+[Rancher-Desktop]: https://img.shields.io/badge/-Rancher_Desktop-black?logo=rancher&style=for-the-badge
 [Rancher-Desktop-url]: https://rancherdesktop.io/
 [container.dev]: https://img.shields.io/badge/Development_Containers-blue.svg?style=for-the-badge
 [DevContainers-url]: https://containers.dev/
