@@ -123,10 +123,14 @@ You can either install the required software dependencies on your own machine or
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* Install Software Dependencies in your own machine
+
+  1. asdasd
+      ```sh
+      npm install npm@latest -g
+      ```
+  2. asd
+* Setup Development Environment
 
 ### Installation
 
