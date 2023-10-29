@@ -30,7 +30,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/AngKokLeong/LibraryPortalFrontend">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -38,6 +38,10 @@
 
   <p align="center">
     This project is a frontend React for Library Portal. It is done by referencing the Udemy tutorial (https://nlbsg.udemy.com/course/full-stack-react-and-java-spring-boot-the-developer-guide/).
+    
+    <br />
+    
+    The purpose of this project is to allow myself to refresh my knowledge on full stack development using React and Spring Boot.
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
@@ -95,8 +99,6 @@ Here's why:
 
 Jira Board: https://libraryportal.atlassian.net/jira/software/projects/LIB/boards/4 
 
-Use the `BLANK_README.md` to get started.
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -118,8 +120,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+You can either install the required software dependencies on your own machine or use Visual Studio Code IDE and DevContainers to setup the development environment.
 
 ### Prerequisites
 
@@ -209,7 +210,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Ang Kok Leong - [@your_twitter](https://twitter.com/your_username) - ang.kok.leong.work@gmail.com
 
 Project Link: [https://github.com/AngKokLeong/LibraryPortalFrontend](https://github.com/AngKokLeong/LibraryPortalFrontend)
 
